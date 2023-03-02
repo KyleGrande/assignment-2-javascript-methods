@@ -62,7 +62,9 @@ Array.prototype.myReduce = function(callbackFn) {
     if (typeof callbackFn !== 'function') {
         throw new TypeError(callbackFn + ' is not a function');
     }
+
     let accumulator;
+
     if (arguments.length > 1) {
         accumulator = arguments[1];
         startIndex = 0;
@@ -72,6 +74,7 @@ Array.prototype.myReduce = function(callbackFn) {
     } else {
         throw new TypeError('Reduce of empty array with no initial value');
     }
+
     for (let i = startIndex; i < this.length; i++) {
         if (i in this) {
             accumulator = callbackFn(accumulator, this[i], i, this);
@@ -83,6 +86,7 @@ Array.prototype.myReduce = function(callbackFn) {
 // INCLUDES //
 Array.prototype.myIncludes = function(searchElement) {
     let fromIndex;
+
     if (arguments.length > 1) {
         fromIndex = arguments[1];
     } else {
@@ -107,7 +111,31 @@ Array.prototype.myIncludes = function(searchElement) {
 
 // INDEXOF //
 Array.prototype.myIndexOf = function(searchElement) {
-    // Place your code here.
+    let fromIndex;
+
+    if (arguments.length > 1) {
+        fromIndex = arguments[1];
+    } else {
+        fromIndex = 0;
+    }
+
+    if (fromIndex >= this.length) {
+        return -1;
+    } else if (fromIndex < 0) {
+        fromIndex = this.length + fromIndex;
+    } else if (fromIndex < -this.length) {
+        fromIndex = 0;
+    }
+
+    if (searchElement !== searchElement || searchElement === undefined)
+        return -1;
+
+    for (let i = fromIndex; i < this.length; i++) {
+        if (this[i] === searchElement) {
+            return i;
+        }
+    }
+    return -1;
 };
 
 // LASTINDEXOF //
