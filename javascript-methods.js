@@ -82,7 +82,27 @@ Array.prototype.myReduce = function(callbackFn) {
 
 // INCLUDES //
 Array.prototype.myIncludes = function(searchElement) {
-    // Place your code here.
+    let fromIndex;
+    if (arguments.length > 1) {
+        fromIndex = arguments[1];
+    } else {
+        fromIndex = 0;
+    }
+
+    if (fromIndex >= this.length) {
+        return false;
+    } else if (fromIndex < 0) {
+        fromIndex = this.length + fromIndex;
+    } else if (fromIndex < -this.length) {
+        fromIndex = 0;
+    }
+
+    for (let i = fromIndex; i < this.length; i++) {
+        if (this[i] === searchElement) {
+            return true;
+        }
+    }
+    return false;
 };
 
 // INDEXOF //
