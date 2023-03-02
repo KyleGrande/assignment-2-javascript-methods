@@ -32,7 +32,7 @@ Array.prototype.myFilter = function(callbackFn) {
     let myFilterArray = [];
     for (let i = 0; i < this.length; i++) {
         if (i in this && callbackFn(this[i], i, this)) {
-            myFilterArray.push(this[i]);
+            myFilterArray.myPush(this[i]);
         };
     };
     return myFilterArray;
@@ -168,7 +168,17 @@ Array.prototype.myLastIndexOf = function(searchElement) {
 
 // KEYS //
 Object.myKeys = function(object) {
-    // Place your code here.
+    let keys = [];
+
+    if (object === null)
+        return keys;
+
+    for (let key in object) {
+        if (object.hasOwnProperty(key)) {
+            keys.myPush(key);
+        }
+    }
+    return keys;
 };
 
 // VALUES //
