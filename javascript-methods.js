@@ -18,9 +18,12 @@ Array.prototype.myPush = function(...args) {
 };
 // MAP //
 Array.prototype.myMap = function(callbackFn) {
-    // Place your code here.
+    let myMapArray = [];
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === undefined) continue;
+        myMapArray[i] = callbackFn(this[i], i, this);
+    };
 };
-
 // FILTER //
 Array.prototype.myFilter = function(callbackFn) {
     // Place your code here.
