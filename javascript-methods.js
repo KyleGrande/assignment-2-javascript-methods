@@ -12,10 +12,12 @@ In this Assignment, we use the prototype constructor to add new methods to the A
 Array.prototype.myPush = function(...args) {
     let args = index = 0;
     let length = this.length;
+
     for (let i = length; i < length + args.length; i++) {
         this[i] = args[index];
         index++;
     }
+    return this.length;
 };
 
 // MAP //
@@ -25,6 +27,7 @@ Array.prototype.myMap = function(callbackFn) {
         if (this[i] === undefined) continue;
         myMapArray[i] = callbackFn(this[i], i, this);
     };
+    return myMapArray;
 };
 
 // FILTER //
