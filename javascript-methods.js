@@ -140,7 +140,30 @@ Array.prototype.myIndexOf = function(searchElement) {
 
 // LASTINDEXOF //
 Array.prototype.myLastIndexOf = function(searchElement) {
-    // Place your code here.
+    let fromIndex;
+
+    if (arguments.length > 1) {
+        fromIndex = arguments[1];
+    } else {
+        fromIndex = this.length - 1;
+    }
+
+    if (fromIndex < 0) {
+        fromIndex = fromIndex + this.length
+    } else if (fromIndex < -this.length) {
+        return -1
+    } else if (fromIndex >= this.length)
+        fromIndex = this.length - 1
+
+    if (searchElement !== searchElement || searchElement === undefined)
+        return -1;
+
+    for (let i = fromIndex; i != -1; i--) {
+        if (this[i] === searchElement) {
+            return i;
+        }
+    }
+    return -1;
 };
 
 // KEYS //
