@@ -7,6 +7,7 @@ The prototype constructor is used to add new methods (functions) and properties 
 
 In this Assignment, we use the prototype constructor to add new methods to the Array() object.
 ----------------------------------------------------------*/
+
 // PUSH //
 Array.prototype.myPush = function(...args) {
     let args = index = 0;
@@ -16,6 +17,7 @@ Array.prototype.myPush = function(...args) {
         index++;
     }
 };
+
 // MAP //
 Array.prototype.myMap = function(callbackFn) {
     let myMapArray = [];
@@ -24,6 +26,7 @@ Array.prototype.myMap = function(callbackFn) {
         myMapArray[i] = callbackFn(this[i], i, this);
     };
 };
+
 // FILTER //
 Array.prototype.myFilter = function(callbackFn) {
     let myFilterArray = [];
@@ -56,7 +59,25 @@ Array.prototype.myEvery = function(callbackFn) {
 
 // REDUCE //
 Array.prototype.myReduce = function(callbackFn) {
-    // Place your code here.
+    if (typeof callbackFn !== 'function') {
+        throw new TypeError(callbackFn + ' is not a function');
+    }
+    let accumulator;
+    if (arguments.length > 1) {
+        accumulator = arguments[1];
+        startIndex = 0;
+    } else if (this.length > 0) {
+        accumulator = this[0];
+        startIndex = 1
+    } else {
+        throw new TypeError('Reduce of empty array with no initial value');
+    }
+    for (let i = startIndex; i < this.length; i++) {
+        if (i in this) {
+            accumulator = callbackFn(accumulator, this[i], i, this);
+        }
+    }
+    return accumulator;
 };
 
 // INCLUDES //
